@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 function Form() {
 const [user,setUser] =useState({email:"", name:"",password:"",confirmpassword:""})
 const {email,name,password,confirmpassword} =user;
+const validationEmail =new RegExp( "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
 
 const handleChange=(event)=>{
     console.log("event.target.id=",event.target.id);
@@ -12,10 +13,28 @@ setUser({...user,[event.target.id]:event.target.value})
 const handleSubmit= (event)=>{
      event.preventDefault();
   //console.log("Submitted");
-  if (event.target.password.value === event.target.confirmpassword.value)
-  {
-     alert("error");
+   if(user.email == ""||user.name==""|| user.password==""|| user.confirmpassword=="" ){
+    
+    document.getElementById("error").textContent = "Error: All input fields must be filled."
+    document.getElementById("success").textContent="";
   }
+  else if(!validationEmail.test(event.target.email.value)) {
+       console.log(validationEmail);
+       document.getElementById("error").textContent = "Error: email should contain[a-z or A-Z or 0-9] @[0-9].[a-zorA-Z]";
+       document.getElementById("success").textContent="";
+}
+  else if (event.target.password.value !== event.target.confirmpassword.value  && event.target.password.value === "" &&event.target.confirmpassword.value === "") {
+    document.getElementById("error").textContent = "Error :password and confirm password must be same and should not be empty either."
+    document.getElementById("success").textContent="";
+  }
+ else if (event.target.password.value === event.target.confirmpassword.value && handleChange(event) !=="" && validationEmail.test(event.target.email.value) )
+  {
+       document.getElementById("success").textContent ="Success !" ;
+       document.getElementById("error").textContent="";
+  }
+ 
+ 
+   
  }
 
 
@@ -42,7 +61,8 @@ const handleSubmit= (event)=>{
     <input type="password" id="confirmpassword" placeholder='confirm password'onChange={handleChange}/>
    </div>
 
-   <div style={{color:"red" ,fontSize:"20px"}}>Error : </div>
+   <div style={{color:"red" ,fontSize:"20px"}} id="error" onSubmit={handleSubmit}></div>
+   <div style={{color:"green" ,fontSize:"20px"}} id ="success" onSubmit={handleSubmit}></div>
    <div>
     <button type='submit' >Click Me to SignUp!</button>
    </div>
