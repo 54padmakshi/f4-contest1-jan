@@ -5,7 +5,11 @@ import Form from './Form';
 function App() {
   return (
     <div className="App">
-     <Form/>
+    <header>SignUp</header>
+      <div className='container'><Form/></div>
+   
+
+     
     </div>
   );
 }

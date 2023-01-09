@@ -2,34 +2,34 @@ import React, { useState } from 'react'
 
 function Form() {
 const [user,setUser] =useState({email:"", name:"",password:"",confirmpassword:""})
-const {email,name,password,confirmpassword} =user;
+//const {email,name,password,confirmpassword} =user;
 const validationEmail =new RegExp( "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
 
 const handleChange=(event)=>{
-    console.log("event.target.id=",event.target.id);
+   // console.log("event.target.id=",event.target.id);
 setUser({...user,[event.target.id]:event.target.value})
 }
 
 const handleSubmit= (event)=>{
      event.preventDefault();
   //console.log("Submitted");
-   if(user.email == ""||user.name==""|| user.password==""|| user.confirmpassword=="" ){
+   if(user.email === ""||user.name===""|| user.password===""|| user.confirmpassword==="" ){
     
     document.getElementById("error").textContent = "Error: All input fields must be filled."
     document.getElementById("success").textContent="";
   }
-  else if(!validationEmail.test(event.target.email.value)) {
+  else if(!validationEmail.test(user.email)) {
        console.log(validationEmail);
        document.getElementById("error").textContent = "Error: email should contain[a-z or A-Z or 0-9] @[0-9].[a-zorA-Z]";
        document.getElementById("success").textContent="";
 }
-  else if (event.target.password.value !== event.target.confirmpassword.value  && event.target.password.value === "" &&event.target.confirmpassword.value === "") {
+  else if (user.password !== user.confirmpassword ) {
     document.getElementById("error").textContent = "Error :password and confirm password must be same and should not be empty either."
     document.getElementById("success").textContent="";
   }
- else if (event.target.password.value === event.target.confirmpassword.value && handleChange(event) !=="" && validationEmail.test(event.target.email.value) )
+ else if (user.password === user.confirmpassword && handleChange(event) !=="" && validationEmail.test(event.target.email.value) )
   {
-       document.getElementById("success").textContent ="Success !" ;
+       document.getElementById("success").textContent ="Success ! Your Signup form is created." ;
        document.getElementById("error").textContent="";
   }
  
@@ -43,7 +43,7 @@ const handleSubmit= (event)=>{
     <div>
     <form onSubmit={handleSubmit}>
    
-   <h3>Login Form Credentials </h3> 
+   <h1>SignUp Form Credentials </h1> 
    <div>
     <label htmlFor='email'>Email : </label>
     <input type="text" id="email" placeholder='email' onChange={handleChange} />
