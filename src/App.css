@@ -1,17 +1,28 @@
 .App {
- 
+   height: 100vh;
+   
   text-align: left;
   background-color: black;
-  color: white;
- 
- 
+  color: rgb(143, 139, 139);
+  
+}
+body{
+  background-color: black;
 }
 .container{
-  padding-left: 80px;
-  padding-top: 20px;  
-  border: 2px solid white;
-  height: 100vh;
-  width: auto;
+    text-align: left;
+    font-size: 20px;
+    margin-top: 10%;
+    margin-left: 200px;
+    color: white;
+}
+
+input{
+  background-color: black;
+  color: white;
+  border: none;
+  border-bottom: 1px solid white;
+  width: 800px;
   font-size: 20px;
 }
 header{
@@ -20,7 +31,7 @@ header{
 button{
  width: 170px;
  height: 50px;
- border-radius: 30px;
+ margin-top: 40px;
 }
 
 .App-logo {

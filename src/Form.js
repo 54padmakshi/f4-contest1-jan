@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 function Form() {
+  
 const [user,setUser] =useState({email:"", name:"",password:"",confirmpassword:""})
 //const {email,name,password,confirmpassword} =user;
 const validationEmail =new RegExp( "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$");
@@ -43,22 +44,23 @@ const handleSubmit= (event)=>{
     <div>
     <form onSubmit={handleSubmit}>
    
-   <h1>SignUp Form Credentials </h1> 
+   <h1> SignUp </h1> 
    <div>
-    <label htmlFor='email'>Email : </label>
-    <input type="text" id="email" placeholder='email' onChange={handleChange} />
+   <label htmlFor='name'> </label>
+    <p><input type="text" id="name" placeholder='Full Name' onChange={handleChange} /></p>
    </div>
    <div>
-   <label htmlFor='name'>Name : </label>
-    <input type="text" id="name" placeholder='name' onChange={handleChange} />
+    <label htmlFor='email'> </label>
+    <p><input type="text" id="email" placeholder='Email' onChange={handleChange} /></p>
+    </div>
+   
+   <div>
+   <label htmlFor='password'></label>
+   <p> <input type="password" id="password" placeholder='Password' onChange={handleChange}/></p>
    </div>
    <div>
-   <label htmlFor='password'>Password : </label>
-    <input type="password" id="password" placeholder='password' onChange={handleChange}/>
-   </div>
-   <div>
-   <label htmlFor='confirmpassword'>Confirm Password : </label>
-    <input type="password" id="confirmpassword" placeholder='confirm password'onChange={handleChange}/>
+   <label htmlFor='confirmpassword'> </label>
+   <p> <input type="password" id="confirmpassword" placeholder='Confirm Password'onChange={handleChange}/></p>
    </div>
 
    <div style={{color:"red" ,fontSize:"20px"}} id="error" onSubmit={handleSubmit}></div>
